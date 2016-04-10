@@ -8,18 +8,35 @@ neat         = require('node-neat').includePaths
 sourcemaps   = require 'gulp-sourcemaps'
 coffee       = require 'gulp-coffee'
 deploy       = require 'gulp-gh-pages'
+_            = require 'lodash'
+jade         = require 'gulp-jade'
+reload       = browsersync.reload
 
 paths        =
   haml   : './source/views/*.haml'
+  jade   : './source/views/*.jade'
   coffee : './source/assets/javascripts/**/*.coffee'
   scss   : './source/assets/stylesheets/**/*.scss'
   images : './source/assets/images/*'
   fonts  : './source/assets/fonts/*'
 
+locals   =
+  url: 'http://localhost'
+  _: _
+
 # Haml templates
-gulp.task 'views', ->
+gulp.task 'haml', ->
   gulp.src(paths.haml).pipe(haml()).pipe gulp.dest('./build')
   return
+
+# Jade templates
+gulp.task 'jade', ->
+  gulp.src(paths.jade)
+    .pipe jade
+      pretty: true
+      locals: locals
+    .pipe gulp.dest('./build')
+    return
 
 # Scss stylesheets
 gulp.task 'stylesheets', ->
@@ -52,7 +69,8 @@ gulp.task 'server', ->
     open: false
   return
 gulp.task 'watch', ->
-  gulp.watch paths.haml, [ 'views' ]
+  gulp.watch paths.haml, [ 'haml' ]
+  gulp.watch paths.jade, [ 'jade' ]
   gulp.watch paths.scss, [ 'stylesheets' ]
   gulp.watch paths.coffee, [ 'javascripts' ]
   gulp.watch paths.images, [ 'images' ]
@@ -66,7 +84,8 @@ gulp.task 'watch', ->
 
 # Run
 gulp.task 'default', [
-  'views'
+  'haml'
+  'jade'
   'stylesheets'
   'javascripts'
   'images'

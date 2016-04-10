@@ -11,6 +11,8 @@ Includes
 * [Gulp](http://gulpjs.com): Converts files and task running
 * [HAML](http://haml.info):
   Simple template markup
+* [Jade/Pug](https://github.com/phated/gulp-jade)
+  Simple, versitile template markup
 * [Coffeescript](http://coffeescript.org):
   Write javascript with simpler syntax
 * [Sass](http://sass-lang.com):
