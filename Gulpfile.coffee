@@ -36,6 +36,7 @@ gulp.task 'jade', ->
       pretty: true
       locals: locals
     .pipe gulp.dest('./build')
+    .pipe reload({stream: true})
     return
 
 # Scss stylesheets
