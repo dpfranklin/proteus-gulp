@@ -10,6 +10,7 @@ coffee       = require 'gulp-coffee'
 deploy       = require 'gulp-gh-pages'
 _            = require 'lodash'
 jade         = require 'gulp-jade'
+shell        = require 'gulp-shell'
 reload       = browsersync.reload
 
 paths        =
@@ -20,9 +21,17 @@ paths        =
   images : './source/assets/images/*'
   fonts  : './source/assets/fonts/*'
 
+urls      =
+  local   : 'http://localhost:8000'
+  staging : 'http://s3staging.com.s3-website-us-east-1.amazonaws.com'
+  prod    : 'http://www.s3staging.com'
+
 locals   =
-  url: 'http://localhost'
-  _: _
+  url    : urls.staging
+  images : 'assets/images'
+  css    : 'assets/stylesheets'
+  js     : 'assets/javascripts'
+  _      : _
 
 # Haml templates
 gulp.task 'haml', ->
@@ -65,7 +74,7 @@ gulp.task 'fonts', ->
 gulp.task 'server', ->
   browsersync
     server: baseDir: './build'
-    port: 4000
+    port: 8000
     notify: false
     open: false
   return
@@ -95,6 +104,31 @@ gulp.task 'default', [
   'watch'
 ], ->
 
+gulp.task 'build', [
+  'haml'
+  'jade'
+  'stylesheets'
+  'javascripts'
+  'images'
+  'fonts'
+  ], -> 
+
+# Deploy to s3 using installed s3_website gem: https://github.com/laurilehmijoki/s3_website
+gulp.task 's3', shell.task([
+  's3_website push'
+])
+
+gulp.task 's3-force', shell.task([
+  's3_website push --force'
+])
+
+gulp.task 's3-deploy', [
+    'build'
+    's3'
+  ], ->
+
 # Deploy
-gulp.task 'deploy', ->
+gulp.task 'gh-deploy', ->
   gulp.src('./build/**/*').pipe deploy(branch: 'master')
+
+
