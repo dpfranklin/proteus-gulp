@@ -15,20 +15,19 @@ block content
     .container
 
       :markdown-it
-        ## !{title}
+        # !{title}
         
-        You're all set!
+        ## You're all set!
         
         [Let's get started building your prototype.](href='http://github.com/dpfranklin/proteus-node') 
 
-        Lodash available in Jade/Pug templates.
+      ul
+        li Lodash available in Jade/Pug templates.
+          ul
+            li Test array: [ #{lodashtest} ]
+            li Lodash uniq function result: #{_.uniq(lodashtest)}
+        li Coffeescript and markdown filters
 
-        Test array: [ #{lodashtest} ]
-      
-        Lodash uniq function result:
-      
-      p= _.uniq(lodashtest)
-      
       script
         :coffee-script
           console.log 'Coffeescript filter functional'

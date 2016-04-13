@@ -13,7 +13,19 @@ body {
     text-align: center;
 
     h1 {
-      font-weight: 200;
+      font-weight: 400;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    ul {
+      text-align: left;
+      li {
+        font-size: 1em;
+      }
+      ul li {
+        margin-left: 1em;
+        font-size: 0.9em;
+      }
     }
   }
 }

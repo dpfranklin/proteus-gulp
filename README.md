@@ -14,7 +14,7 @@ Includes
 * [Jade/Pug](https://github.com/phated/gulp-jade)
   Simple, versitile template markup
 * [Coffeescript](http://coffeescript.org):
-  Write javascript with simpler syntax
+  Write javascript with simpler syntax. Available as filter in jade templates and Gulpfiles.
 * [Sass](http://sass-lang.com):
   CSS with superpowers
 * [Bourbon](http://bourbon.io):
@@ -23,8 +23,12 @@ Includes
   Semantic grid for Sass and Bourbon
 * [Bitters](http://bitters.bourbon.io):
   Scaffold styles, variables and structure for Bourbon projects.
-* [Express](http://expressjs.com): Lightweight Node web server
-* [Lodash](https://lodash.com/): Easy javascript library for use in Jade templates
+* [Express](http://expressjs.com):
+  Lightweight Node web server
+* [Lodash](https://lodash.com/):
+  Easy javascript library for use in Jade templates
+* [Markdown-it](https://markdown-it.github.io/):
+  Markdown parser, done right. 100% CommonMark support, extensions, syntax plugins & high speed
 
 We also recommend [Refills](http://refills.bourbon.io/) for prepackaged interface patterns.
 
