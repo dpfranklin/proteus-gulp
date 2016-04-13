@@ -24,6 +24,7 @@ Includes
 * [Bitters](http://bitters.bourbon.io):
   Scaffold styles, variables and structure for Bourbon projects.
 * [Express](http://expressjs.com): Lightweight Node web server
+* [Lodash](https://lodash.com/): Easy javascript library for use Jade templates
 
 We also recommend [Refills](http://refills.bourbon.io/) for prepackaged interface patterns.
 
@@ -50,6 +51,11 @@ gulp
 Deploy to Github Pages
 ```
 gulp deploy
+```
+
+Deploy to AWS S3 (install [s3_website gem](https://github.com/laurilehmijoki/s3_website) first.)
+```
+gulp s3-deploy
 ```
 
 Or install the [Proteus gem](https://github.com/thoughtbot/proteus) and enjoy some shortcuts.

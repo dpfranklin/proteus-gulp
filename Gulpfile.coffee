@@ -14,12 +14,13 @@ shell        = require 'gulp-shell'
 reload       = browsersync.reload
 
 paths        =
-  haml   : './source/views/*.haml'
-  jade   : './source/views/*.jade'
-  coffee : './source/assets/javascripts/**/*.coffee'
-  scss   : './source/assets/stylesheets/**/*.scss'
-  images : './source/assets/images/*'
-  fonts  : './source/assets/fonts/*'
+  haml     : './source/views/*.haml'
+  jade     : './source/views/*.jade'
+  partials : './source/views/partials/_*.jade'
+  coffee   : './source/assets/javascripts/**/*.coffee'
+  scss     : './source/assets/stylesheets/**/*.scss'
+  images   : './source/assets/images/*'
+  fonts    : './source/assets/fonts/*'
 
 urls      =
   local   : 'http://localhost:8000'
@@ -75,12 +76,13 @@ gulp.task 'server', ->
   browsersync
     server: baseDir: './build'
     port: 8000
-    notify: false
+    notify: true
     open: false
   return
 gulp.task 'watch', ->
   gulp.watch paths.haml, [ 'haml' ]
   gulp.watch paths.jade, [ 'jade' ]
+  gulp.watch paths.partials, [ 'jade' ]
   gulp.watch paths.scss, [ 'stylesheets' ]
   gulp.watch paths.coffee, [ 'javascripts' ]
   gulp.watch paths.images, [ 'images' ]
@@ -125,6 +127,11 @@ gulp.task 's3-force', shell.task([
 gulp.task 's3-deploy', [
     'build'
     's3'
+  ], ->
+
+gulp.task 's3-force-deploy', [
+    'build'
+    's3-force'
   ], ->
 
 # Deploy
