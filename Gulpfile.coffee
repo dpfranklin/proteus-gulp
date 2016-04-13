@@ -20,7 +20,7 @@ paths        =
   coffee   : './source/assets/javascripts/**/*.coffee'
   scss     : './source/assets/stylesheets/**/*.scss'
   images   : './source/assets/images/*'
-  fonts    : './source/assets/fonts/*'
+  fonts    : './source/assets/fonts/**/*'
 
 urls      =
   local   : 'http://localhost:8000'
