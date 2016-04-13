@@ -28,7 +28,7 @@ urls      =
   prod    : 'http://www.s3staging.com'
 
 locals   =
-  url    : urls.staging
+  url    : urls.local
   images : 'assets/images'
   css    : 'assets/stylesheets'
   js     : 'assets/javascripts'

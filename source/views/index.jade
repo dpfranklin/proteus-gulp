@@ -13,19 +13,23 @@ append scripts
 block content
   .delete-me
     .container
-      h1 !{title}
-      p
-        | You're all set!
-      p
-        a(href='http://github.com/thoughtbot/proteus-node') Let's get started building your prototype.
 
-      p Lodash available in Jade/Pug templates.
+      :markdown-it
+        ## !{title}
+        
+        You're all set!
+        
+        [Let's get started building your prototype.](href='http://github.com/dpfranklin/proteus-node') 
 
-      p Test array:
-      p [ #{lodashtest} ]
+        Lodash available in Jade/Pug templates.
+
+        Test array: [ #{lodashtest} ]
       
-      p Lodash uniq function result:
+        Lodash uniq function result:
+      
       p= _.uniq(lodashtest)
+
+
 
 
 
