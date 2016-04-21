@@ -21,6 +21,8 @@ paths        =
   scss     : './source/assets/stylesheets/**/*.scss'
   images   : './source/assets/images/*'
   fonts    : './source/assets/fonts/**/*'
+  root     : './source/root/*'
+
 
 urls      =
   local   : 'http://localhost:8000'
@@ -71,6 +73,13 @@ gulp.task 'fonts', ->
   gulp.src(paths.fonts).pipe gulp.dest('./build/assets/fonts')
   return
 
+# Copy root assets
+gulp.task 'root', ->
+  gulp.src(paths.root)
+  .pipe gulp.dest('./build')
+  .pipe reload({stream: true})
+  return
+
 # Server
 gulp.task 'server', ->
   browsersync
@@ -102,6 +111,7 @@ gulp.task 'default', [
   'javascripts'
   'images'
   'fonts'
+  'root'
   'server'
   'watch'
 ], ->
@@ -112,6 +122,7 @@ gulp.task 'build', [
   'stylesheets'
   'javascripts'
   'images'
+  'root'
   'fonts'
   ], -> 
 
