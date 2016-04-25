@@ -1,6 +1,8 @@
 gulp         = require 'gulp'
 browsersync  = require 'browser-sync'
 include      = require 'gulp-include'
+postcss      = require 'gulp-postcss'
+autprefixer  = require 'autoprefixer'
 concat       = require 'gulp-concat'
 haml         = require 'gulp-ruby-haml'
 sass         = require 'gulp-ruby-sass'
@@ -55,7 +57,12 @@ gulp.task 'jade', ->
 gulp.task 'stylesheets', ->
   sass(paths.scss,
     sourcemap: false
-    loadPath: neat).on('error', sass.logError).pipe gulp.dest('./build/assets/stylesheets')
+    loadPath: neat).on('error', sass.logError)
+  .pipe(postcss([
+      require('autoprefixer')
+    ]))
+  .pipe gulp.dest('./build/assets/stylesheets')
+
 
 # Coffeescript
 gulp.task 'javascripts', ->
@@ -124,7 +131,7 @@ gulp.task 'build', [
   'images'
   'root'
   'fonts'
-  ], -> 
+  ], ->
 
 # Deploy to s3 using installed s3_website gem: https://github.com/laurilehmijoki/s3_website
 gulp.task 's3', shell.task([
