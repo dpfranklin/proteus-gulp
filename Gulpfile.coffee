@@ -4,21 +4,21 @@ include      = require 'gulp-include'
 postcss      = require 'gulp-postcss'
 autprefixer  = require 'autoprefixer'
 concat       = require 'gulp-concat'
-haml         = require 'gulp-ruby-haml'
-sass         = require 'gulp-ruby-sass'
-neat         = require('node-neat').includePaths
+sass         = require 'gulp-sass'
+bourbon      = require 'node-bourbon'
+neat         = require 'node-neat'
 sourcemaps   = require 'gulp-sourcemaps'
 coffee       = require 'gulp-coffee'
 deploy       = require 'gulp-gh-pages'
 _            = require 'lodash'
-jade         = require 'gulp-jade'
+pug          = require 'gulp-pug'
 shell        = require 'gulp-shell'
 reload       = browsersync.reload
 
 paths        =
   haml     : './source/views/*.haml'
-  jade     : './source/views/*.jade'
-  partials : './source/views/partials/_*.jade'
+  pug      : './source/views/*.pug'
+  partials : './source/views/partials/_*.pug'
   coffee   : './source/assets/javascripts/**/*.coffee'
   scss     : './source/assets/stylesheets/**/*.scss'
   images   : './source/assets/images/*'
@@ -38,15 +38,10 @@ locals   =
   js     : 'assets/javascripts'
   _      : _
 
-# Haml templates
-gulp.task 'haml', ->
-  gulp.src(paths.haml).pipe(haml()).pipe gulp.dest('./build')
-  return
-
-# Jade templates
-gulp.task 'jade', ->
-  gulp.src(paths.jade)
-    .pipe jade
+# Pug templates
+gulp.task 'pug', ->
+  gulp.src(paths.pug)
+    .pipe pug
       pretty: true
       locals: locals
     .pipe gulp.dest('./build')
@@ -55,9 +50,10 @@ gulp.task 'jade', ->
 
 # Scss stylesheets
 gulp.task 'stylesheets', ->
-  sass(paths.scss,
-    sourcemap: false
-    loadPath: neat).on('error', sass.logError)
+  gulp.src paths.scss
+  .pipe sass(
+    includePaths: neat.includePaths
+    ).on('error', sass.logError)
   .pipe(postcss([
       require('autoprefixer')
     ]))
@@ -97,8 +93,8 @@ gulp.task 'server', ->
   return
 gulp.task 'watch', ->
   gulp.watch paths.haml, [ 'haml' ]
-  gulp.watch paths.jade, [ 'jade' ]
-  gulp.watch paths.partials, [ 'jade' ]
+  gulp.watch paths.pug, [ 'pug' ]
+  gulp.watch paths.partials, [ 'pug' ]
   gulp.watch paths.scss, [ 'stylesheets' ]
   gulp.watch paths.coffee, [ 'javascripts' ]
   gulp.watch paths.images, [ 'images' ]
@@ -112,8 +108,7 @@ gulp.task 'watch', ->
 
 # Run
 gulp.task 'default', [
-  'haml'
-  'jade'
+  'pug'
   'stylesheets'
   'javascripts'
   'images'
@@ -124,8 +119,7 @@ gulp.task 'default', [
 ], ->
 
 gulp.task 'build', [
-  'haml'
-  'jade'
+  'pug'
   'stylesheets'
   'javascripts'
   'images'

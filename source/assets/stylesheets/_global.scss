@@ -5,7 +5,7 @@ body {
 
 .delete-me {
   @include align-items(center);
-  @include display(flex);
+  display: flex;
   @include justify-content(center);
   height: 100vh;
 
