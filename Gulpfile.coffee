@@ -13,13 +13,14 @@ deploy       = require 'gulp-gh-pages'
 _            = require 'lodash'
 pug          = require 'gulp-pug'
 shell        = require 'gulp-shell'
+webpack      = require 'webpack-stream'
 reload       = browsersync.reload
 
 paths        =
   haml     : './source/views/*.haml'
   pug      : './source/views/*.pug'
   partials : './source/views/partials/_*.pug'
-  coffee   : './source/assets/javascripts/**/*.coffee'
+  coffee   : ['./source/assets/javascripts/**/*.coffee', '!./source/assets/javascripts/**/_*.coffee']
   scss     : './source/assets/stylesheets/**/*.scss'
   images   : './source/assets/images/*'
   fonts    : './source/assets/fonts/**/*'
@@ -62,18 +63,34 @@ gulp.task 'stylesheets', ->
 
 # Coffeescript
 gulp.task 'javascripts', ->
-  gulp.src(paths.coffee).pipe(sourcemaps.init()).pipe(include()).pipe(coffee()).pipe(sourcemaps.write()).pipe gulp.dest('./build/assets/javascripts')
+  gulp.src(paths.coffee)
+    .pipe(sourcemaps.init())
+    .pipe(include())
+    .pipe(coffee())
+    .pipe(sourcemaps.write())
+    .pipe gulp.dest('./build/assets/javascripts')
+
 coffeeStream = coffee(bare: true)
 coffeeStream.on 'error', (err) ->
 
+
+# Test Webpack Task
+gulp.task 'webpack', ->
+  gulp.src './source/assets/javascripts/_app2.js'
+  .pipe webpack( require('./webpack.config.js') )
+  .pipe gulp.dest('./build/assets/javascripts')
+  .pipe reload({stream: true})
+
 # Copy images
 gulp.task 'images', ->
-  gulp.src(paths.images).pipe gulp.dest('./build/assets/images')
+  gulp.src(paths.images)
+    .pipe gulp.dest('./build/assets/images')
   return
 
 # Copy fonts
 gulp.task 'fonts', ->
-  gulp.src(paths.fonts).pipe gulp.dest('./build/assets/fonts')
+  gulp.src(paths.fonts)
+    .pipe gulp.dest('./build/assets/fonts')
   return
 
 # Copy root assets
@@ -108,6 +125,7 @@ gulp.task 'watch', ->
 
 # Run
 gulp.task 'default', [
+  'webpack'
   'pug'
   'stylesheets'
   'javascripts'
