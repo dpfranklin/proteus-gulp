@@ -1,6 +1,6 @@
 {
   "name": "proteus-gulp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Prototype starter kit for Gulp",
   "main": "Gulpfile.js",
   "scripts": {
@@ -8,21 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thoughtbot/proteus-gulp.git"
+    "url": "https://github.com/dpfranklin/proteus-gulp.git"
   },
   "keywords": [
     "prototyping",
     "node"
   ],
   "author": {
-    "name": "thoughtbot",
-    "url": "http://thoughtbot.com"
+    "name": "thoughtbot and edited by DPFranklin",
+    "url": "https://github.com/dpfranklin/proteus-gulp/issues"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thoughtbot/proteus-gulp/issues"
+    "url": "https://github.com/dpfranklin/proteus-gulp/issues"
   },
-  "homepage": "http://thoughtbot.github.io/proteus",
+  "homepage": "https://github.com/dpfranklin/proteus-gulp",
   "dependencies": {
     "lodash": "^4.12.0",
     "node-bourbon": "^4.2.8",
