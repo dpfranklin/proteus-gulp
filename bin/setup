@@ -13,7 +13,7 @@ echo "Installing Dependencies..."
 npm install
 
 # Remove Git remote if it's still the proteus-middleman repo
-if [ "$(git config --get remote.origin.url)" = "git@github.com:thoughtbot/proteus-gulp.git" ]; then
+if [ "$(git config --get remote.origin.url)" = "git@github.com:dpfranklin/proteus-gulp.git" ]; then
   echo "What is your repo url? Enter URL or leave blank"
   read url
   if [ -z "$url" ]; then
