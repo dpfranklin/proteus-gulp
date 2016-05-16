@@ -18,15 +18,18 @@ block content
       :markdown-it
         ## You're all set!
         
-        [Let's get started building your prototype.](href='http://github.com/dpfranklin/proteus-node') 
+        ### [Let's get started building your prototype.](http://github.com/dpfranklin/proteus-node) 
 
+        * [Coffeescript](http://coffeescript.org/) and [Markdown filters](https://markdown-it.github.io/)
+        * [Font-awesome Icons](http://fontawesome.io/icons/)
+        * [Bourbon/Neat Sass Mixin Library](http://bourbon.io/) 
+        * [Lodash available in Jade/Pug templates.](https://lodash.com/)
+      
       ul
-        li Lodash available in Jade/Pug templates.
+        li
           ul
             li Test array: [ #{lodashtest} ]
             li Lodash uniq function result: #{_.uniq(lodashtest)}
-        li Coffeescript and markdown filters
-        li Font-awesome Icons
 
       script
         :coffee-script
