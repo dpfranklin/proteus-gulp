@@ -3,9 +3,9 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  entry: "./source/assets/javascripts/_app2.coffee",
+  entry: "./source/assets/javascripts/app.coffee",
   output: {
-    filename: 'app2.js'
+    filename: 'app.js'
   },
   watch: true,
   devtool: 'inline-source-map',
