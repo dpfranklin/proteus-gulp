@@ -2,6 +2,6 @@
 Include your files here
 ###
 
-#= require filename.coffee
+#=require _part1.coffee
 
 

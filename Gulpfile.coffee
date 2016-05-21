@@ -62,7 +62,12 @@ gulp.task 'stylesheets', ->
 
 # Coffeescript
 gulp.task 'javascripts', ->
-  gulp.src(paths.coffee).pipe(sourcemaps.init()).pipe(include()).pipe(coffee()).pipe(sourcemaps.write()).pipe gulp.dest('./build/assets/javascripts')
+  gulp.src paths.coffee
+    .pipe sourcemaps.init()
+    .pipe include()
+    .pipe coffee()
+    .pipe sourcemaps.write()
+    .pipe gulp.dest('./build/assets/javascripts')
 coffeeStream = coffee(bare: true)
 coffeeStream.on 'error', (err) ->
 
