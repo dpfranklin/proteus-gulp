@@ -2,6 +2,9 @@ doctype html
 html
   block vars
     - var baseurl = locals.url
+    - var images = baseurl + '/' + locals.images
+    - var css = baseurl + '/' + locals.css
+    - var js = baseurl + '/' + locals.js
     - var _ = locals._
 
   head
@@ -14,7 +17,7 @@ html
         title=  title
 
       block css
-        link(href=`${baseurl}/assets/stylesheets/application.css`, rel='stylesheet', type='text/css')
+        link(href=`${css}/application.css`, rel='stylesheet', type='text/css')
 
   body
 
@@ -22,5 +25,5 @@ html
 
     block scripts
       script(src='https://code.jquery.com/jquery-2.1.1.min.js')
-      script(src=`${baseurl}/assets/javascripts/app.js`)
+      script(src=`${js}/app.js`)
 

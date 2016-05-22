@@ -41,12 +41,28 @@ Install be issuing `npm install` at the command line.
       staging : 'http://s3staging.com.s3-website-us-east-1.amazonaws.com'
       prod    : 'http://www.s3staging.com'
 
+#### Environment
+Function to set environment for development and eventual deploy.  This will set urls in templates.
+
+** Set deploy environment here! ** Options = local, staging and prod.  Enter as a quoted string - example: "staging"  
+
+    denv = 'local'
+
+Select proper urls for templates.
+
+    urlselect = switch
+      when denv is 'local' then urls.local
+      when denv is 'localhost' then urls.local
+      when denv is 'staging' then urls.staging
+      when denv is 'prod' then urls.prod
+      when denv is 'production' then urls.prod
+      else urls.local
 
 #### locals Object 
 This object is passed to Pug templates.  Reference the urls object to set environment i.e. `url: urls.stating` for S3 staging deployment.
 
     locals   =
-      url    : urls.local
+      url    : urlselect
       _      : _
       images : 'assets/images'
       css    : 'assets/stylesheets'
