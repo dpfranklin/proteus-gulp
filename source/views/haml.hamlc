@@ -21,29 +21,16 @@
     .delete-me
       .container
         .fa.fa-sign-language
-        %h1!= title 
-        %h2 You're all set!
-        %h3 
-          %a{href: "http://github.com/dpfranklin/proteus-node"} Let's get started building your prototype
-        
-        %ul
-          %li 
-            %a{href: 'http://coffeescript.org/' } Coffeescript and 
-            %a{href: 'https://markdown-it.github.io/'} Markdown filters
-          %li 
-            %a{href: 'http://fontawesome.io/icons/'} Font-awesome Icons
-          %li 
-            %a{href: 'http://bourbon.io/'} Bourbon/Neat Sass Mixin Library
-          %li
-            %a{href: 'https://lodash.com/'} Lodash available in Jade/Pug templates
-          %li
-            %a{href: 'http://localhost:8000/'} Link to Pug compiled page
+        %h1!= title
+         
+        +include "./source/views/partials/_partial.hamlc"
         
         %ul 
           %li
             %ul
               %li Test array: [ #{ lodashtest }]
               %li Lodash uniq function result: #{ lodashresult }
+
 
     :javascript
       console.log('Javascript filter functional')
