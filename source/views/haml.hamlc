@@ -1,0 +1,53 @@
+- title = "Proteus &amp; Haml-Coffee"
+- baseurl = @url
+- images = @images
+- css = @css
+- js = @js
+- _ = @_
+- lodashtest = [1, 2, 3, 3, 1, 1]
+- lodashresult = _.uniq(lodashtest)
+
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge,chrome=1", http: {equiv: "X-UA-Compatible"}}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+
+    %title= title
+    %link{href: "#{baseurl}/#{css}/app.css", rel: "stylesheet", type: "text/css"}
+
+  %body
+    .delete-me
+      .container
+        .fa.fa-sign-language
+        %h1!= title 
+        %h2 You're all set!
+        %h3 
+          %a{href: "http://github.com/dpfranklin/proteus-node"} Let's get started building your prototype
+        
+        %ul
+          %li 
+            %a{href: 'http://coffeescript.org/' } Coffeescript and 
+            %a{href: 'https://markdown-it.github.io/'} Markdown filters
+          %li 
+            %a{href: 'http://fontawesome.io/icons/'} Font-awesome Icons
+          %li 
+            %a{href: 'http://bourbon.io/'} Bourbon/Neat Sass Mixin Library
+          %li
+            %a{href: 'https://lodash.com/'} Lodash available in Jade/Pug templates
+          %li
+            %a{href: 'http://localhost:8000/'} Link to Pug compiled page
+        
+        %ul 
+          %li
+            %ul
+              %li Test array: [ #{ lodashtest }]
+              %li Lodash uniq function result: #{ lodashresult }
+
+    :javascript
+      console.log('Javascript filter functional')
+        
+
+    %script{src: "https://code.jquery.com/jquery-2.1.1.min.js"}
+    %script{src: "#{baseurl}/#{js}/app.js"}

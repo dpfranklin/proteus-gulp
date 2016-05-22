@@ -1,7 +1,7 @@
 extends ./partials/_default
 
 append vars
-  - var title = "Proteus &mdash; Pug"
+  - var title = "Proteus &amp; Pug"
   - var lodashtest = [1, 2, 3, 3, 1, 1]
 
 append css
@@ -14,7 +14,7 @@ block content
   .delete-me
     .container
       .fa.fa-sign-language
-      h1!= title
+      h1 !{title}
       :markdown-it
         ## You're all set!
         
@@ -24,12 +24,14 @@ block content
         * [Font-awesome Icons](http://fontawesome.io/icons/)
         * [Bourbon/Neat Sass Mixin Library](http://bourbon.io/) 
         * [Lodash available in Jade/Pug templates.](https://lodash.com/)
+        * [Link to a HAML compiled page](http://localhost:8000/haml.html)
       
       ul
         li
           ul
             li Test array: [ #{lodashtest} ]
             li Lodash uniq function result: #{_.uniq(lodashtest)}
+
 
       script
         :coffee-script

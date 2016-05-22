@@ -10,16 +10,16 @@ Install be issuing `npm install` at the command line.
     include      = require 'gulp-include'
     postcss      = require 'gulp-postcss'
     autprefixer  = require 'autoprefixer'
-    concat       = require 'gulp-concat'
     sass         = require 'gulp-sass'
     bourbon      = require 'node-bourbon'
     neat         = require 'node-neat'
     sourcemaps   = require 'gulp-sourcemaps'
     coffee       = require 'gulp-coffee'
     ghpages      = require 'gulp-gh-pages'
-    _            = require 'lodash'
     pug          = require 'gulp-pug'
     shell        = require 'gulp-shell'
+    hamlc        = require 'gulp-haml-coffee'
+    _            = require 'lodash'
     reload       = browsersync.reload
 
 ### Project Configuation
@@ -28,6 +28,7 @@ Install be issuing `npm install` at the command line.
     paths        =
       pug      : './source/views/*.pug'
       partials : './source/views/partials/_*.pug'
+      hamlc    : './source/views/*.hamlc'
       coffee   : ['./source/assets/javascripts/**/*.coffee', '!./source/assets/javascripts/**/_*.coffee' ]
       scss     : './source/assets/stylesheets/**/*.scss'
       images   : './source/assets/images/*'
@@ -73,13 +74,25 @@ This object is passed to Pug templates.  Reference the urls object to set enviro
 #### Pug templates
 
     gulp.task 'pug', ->
-      gulp.src(paths.pug)
+      gulp.src paths.pug
         .pipe pug
-          pretty: true
-          locals: locals
+           pretty: true
+           locals: locals
         .pipe gulp.dest('./build')
         .pipe reload({stream: true})
         return
+
+#### HAML templates
+
+    gulp.task 'haml', ->
+      gulp.src paths.hamlc
+        .pipe hamlc
+          locals: locals
+          escapeAttributes: false
+        .pipe gulp.dest('./build')
+        .pipe reload({stream: true})
+        return
+
 
 #### SCSS stylesheets
 
@@ -144,6 +157,7 @@ Set global coffeescript environment
     gulp.task 'watch', ->
       gulp.watch paths.pug, [ 'pug' ]
       gulp.watch paths.partials, [ 'pug' ]
+      gulp.watch paths.hamlc, [ 'haml' ]
       gulp.watch paths.scss, [ 'stylesheets' ]
       gulp.watch paths.coffee, [ 'javascripts' ]
       gulp.watch paths.images, [ 'images' ]
@@ -158,6 +172,7 @@ Set global coffeescript environment
 #### Default
 
     gulp.task 'default', [
+      'haml'
       'pug'
       'stylesheets'
       'javascripts'
@@ -172,6 +187,7 @@ Set global coffeescript environment
 
     gulp.task 'build', [
       'pug'
+      'haml'
       'stylesheets'
       'javascripts'
       'images'
