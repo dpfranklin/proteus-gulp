@@ -142,7 +142,6 @@ Set global coffeescript environment
 #### Watch
 
     gulp.task 'watch', ->
-      gulp.watch paths.haml, [ 'haml' ]
       gulp.watch paths.pug, [ 'pug' ]
       gulp.watch paths.partials, [ 'pug' ]
       gulp.watch paths.scss, [ 'stylesheets' ]
