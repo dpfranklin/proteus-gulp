@@ -19,6 +19,7 @@ Install be issuing `npm install` at the command line.
     pug          = require 'gulp-pug'
     shell        = require 'gulp-shell'
     hamlc        = require 'gulp-haml-coffee'
+    pretty       = require 'gulp-prettify'
     _            = require 'lodash'
     reload       = browsersync.reload
 
@@ -26,9 +27,9 @@ Install be issuing `npm install` at the command line.
 #### Asset Paths
 
     paths        =
-      pug      : './source/views/*.pug'
+      pug      : './source/views/**/*.pug'
       partials : './source/views/partials/_*.pug'
-      hamlc    : './source/views/*.hamlc'
+      hamlc    : './source/views/**/*.hamlc'
       coffee   : ['./source/assets/javascripts/**/*.coffee', '!./source/assets/javascripts/**/_*.coffee' ]
       scss     : './source/assets/stylesheets/**/*.scss'
       images   : './source/assets/images/*'
@@ -89,10 +90,10 @@ This object is passed to Pug templates.  Reference the urls object to set enviro
         .pipe hamlc
           locals: locals
           escapeAttributes: false
+        .pipe pretty()
         .pipe gulp.dest('./build')
         .pipe reload({stream: true})
         return
-
 
 #### SCSS stylesheets
 

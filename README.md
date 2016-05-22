@@ -9,10 +9,10 @@ favorite front end tools.
 Includes
 --------
 * [Gulp](http://gulpjs.com): Converts files and task running
-* [HAML](http://haml.info):
-  Simple template markup
 * [Jade/Pug](https://github.com/phated/gulp-jade)
   Simple, versitile template markup
+* [HAML-Coffee](http://haml-coffee-online.herokuapp.com/):
+  Simple template markup with coffeescript.
 * [Coffeescript](http://coffeescript.org):
   Write javascript with simpler syntax. Available as filter in jade templates and Gulpfiles.
 * [Sass](http://sass-lang.com):
@@ -30,7 +30,7 @@ Includes
 * [Markdown-it](https://markdown-it.github.io/):
   Markdown parser, done right. 100% CommonMark support, extensions, syntax plugins & high speed
 
-We also recommend [Refills](http://refills.bourbon.io/) for prepackaged interface patterns.
+[Refills](http://refills.bourbon.io/) is recommended for prepackaged interface patterns.
 
 Getting Started
 ---------------
@@ -52,6 +52,9 @@ Run the server
 gulp
 ```
 
+Read Gulpfile.litcoffee to gain a better sense on how to optimize and customize this package including how to deploy to AWS S3.
+
+
 Deploy to Github Pages
 ```
 gulp deploy
@@ -62,7 +65,6 @@ Deploy to AWS S3 (install [s3_website gem](https://github.com/laurilehmijoki/s3_
 gulp s3-deploy
 ```
 
-Or install the [Proteus gem](https://github.com/thoughtbot/proteus) and enjoy some shortcuts.
 
 Stylesheets, images, fonts, and javascript files go in the `/source/assets/` directory.
 Vendor stylesheets and javascripts should go in each of their `/vendor/` directories.
@@ -72,13 +74,13 @@ Contributing
 ------------
 
 If you have problems, please create a
-[GitHub Issue](https://github.com/thoughtbot/proteus-gulp/issues)
+[GitHub Issue](https://github.com/dpfranklin/proteus-gulp/issues)
 
 Have a fix or want to add a feature? Open a
-[Pull Request](https://github.com/thoughtbot/proteus-gulp/pulls)
+[Pull Request](https://github.com/dpfranklin/proteus-gulp/pulls)
 
 
-Credits
+Original Credits
 -------
 
 [![thoughtbot](http://images.thoughtbot.com/bourbon/thoughtbot-logo.svg)](http://thoughtbot.com)
@@ -86,6 +88,8 @@ Credits
 This application is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
 
 Thank you to all [the contributors](https://github.com/thoughtbot/proteus-middleman/contributors)!
+
+With modification by [dpfranklin](https://github.com/dpfranklin)
 
 License
 -------
